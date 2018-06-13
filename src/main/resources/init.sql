@@ -1,0 +1,41 @@
+CREATE TABLE `t_login` (
+	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`login_name` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '登录名',
+	`password` VARCHAR (100) NOT NULL DEFAULT '' COMMENT '登录密码',
+	`data_status` TINYINT (4) NOT NULL DEFAULT '1' COMMENT '状态(0:禁用,1:启用,2:删除)',
+	`create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY (`id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8 COMMENT = '登录表';
+
+CREATE TABLE `t_image` (
+	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`path` VARCHAR (255) NOT NULL DEFAULT '' COMMENT '图片路径',
+	`img_type` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '图片类型',
+	`data_status` TINYINT (4) NOT NULL DEFAULT '1' COMMENT '状态(0:禁用,1:启用,2:删除)',
+	`create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY (`id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8 COMMENT = '图片表';
+
+CREATE TABLE `t_blog` (
+	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`topic` VARCHAR (100) NOT NULL DEFAULT '' COMMENT '主题',
+	`context` VARCHAR (500) NOT NULL DEFAULT '' COMMENT '内容',
+	`data_status` TINYINT (4) NOT NULL DEFAULT '1' COMMENT '状态(0:禁用,1:启用,2:删除)',
+	`create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY (`id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8 COMMENT = '博客表';
+
+CREATE TABLE `t_about` (
+	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`phone` VARCHAR (20) NOT NULL DEFAULT '' COMMENT '手机',
+	`qq` VARCHAR (20) NOT NULL DEFAULT '' COMMENT 'QQ',
+	`email` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '邮箱',
+	`context` VARCHAR (500) NOT NULL DEFAULT '' COMMENT '个人介绍',
+	`data_status` TINYINT (4) NOT NULL DEFAULT '1' COMMENT '状态(0:禁用,1:启用,2:删除)',
+	`create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	`update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY (`id`)
+) ENGINE = INNODB DEFAULT CHARSET = utf8 COMMENT = '关于我';

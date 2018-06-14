@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = {"com.hwy.blog.dao"}, sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(basePackages = {"com.hwy.blog.core.dao"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisConfig implements TransactionManagementConfigurer {
 
     @Autowired

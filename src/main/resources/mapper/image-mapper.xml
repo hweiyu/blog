@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <!-- namespace必须指向Dao接口 -->
-<mapper namespace="com.hwy.blog.dao.ImageDao">
+<mapper namespace="com.hwy.blog.core.dao.ImageDao">
 
-    <resultMap id="ImageResultMap" type="com.hwy.blog.model.Image">
+    <resultMap id="ImageResultMap" type="com.hwy.blog.core.model.Image">
             <id column="id" jdbcType="BIGINT" property="id" />
             <id column="rel_id" jdbcType="BIGINT" property="relId" />
             <id column="path" jdbcType="VARCHAR" property="path" />
@@ -23,7 +23,7 @@
             update_time
     </sql>
 
-    <insert id="insert" parameterType="com.hwy.blog.model.Image">
+    <insert id="insert" parameterType="com.hwy.blog.core.model.Image">
         insert into t_image
         <trim prefix="(" suffix=")" suffixOverrides="," >
                 <if test="relId != null and relId != '' " >
@@ -49,7 +49,7 @@
         </trim>
     </insert>
 
-    <delete id="delete" parameterType="com.hwy.blog.model.Image">
+    <delete id="delete" parameterType="com.hwy.blog.core.model.Image">
         delete from t_image
         <where>
                 <if test="id != null and id!='' " >
@@ -58,7 +58,7 @@
         </where>
     </delete>
 
-    <update id="update" parameterType="com.hwy.blog.model.Image">
+    <update id="update" parameterType="com.hwy.blog.core.model.Image">
         update t_image
         <set>
                     <if test="path != null and path!='' " >
@@ -81,7 +81,7 @@
         </where>
     </update>
 
-    <select id="select" parameterType="com.hwy.blog.model.Image" resultMap="ImageResultMap">
+    <select id="select" parameterType="com.hwy.blog.core.model.Image" resultMap="ImageResultMap">
         select <include refid="Base_Column_List"/>
         from t_image
         <where>
@@ -91,7 +91,7 @@
         </where>
     </select>
 
-    <select id="get" parameterType="com.hwy.blog.model.Image" resultMap="ImageResultMap">
+    <select id="get" parameterType="com.hwy.blog.core.model.Image" resultMap="ImageResultMap">
         select <include refid="Base_Column_List"/>
         from t_image
         <where>

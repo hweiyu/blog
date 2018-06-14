@@ -1,6 +1,6 @@
 package com.hwy.blog.util;
 
-import com.hwy.blog.dto.BlogResult;
+import com.hwy.blog.web.dto.BlogResult;
 
 /**
  * @author huangweiyu

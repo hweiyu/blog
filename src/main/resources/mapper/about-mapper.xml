@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <!-- namespace必须指向Dao接口 -->
-<mapper namespace="com.hwy.blog.dao.AboutDao">
+<mapper namespace="com.hwy.blog.core.dao.AboutDao">
 
-    <resultMap id="AboutResultMap" type="com.hwy.blog.model.About">
+    <resultMap id="AboutResultMap" type="com.hwy.blog.core.model.About">
             <id column="id" jdbcType="BIGINT" property="id" />
             <id column="phone" jdbcType="VARCHAR" property="phone" />
             <id column="qq" jdbcType="VARCHAR" property="qq" />
@@ -25,7 +25,7 @@
             update_time
     </sql>
 
-    <insert id="insert" parameterType="com.hwy.blog.model.About">
+    <insert id="insert" parameterType="com.hwy.blog.core.model.About">
         insert into t_about
         <trim prefix="(" suffix=")" suffixOverrides="," >
                 <if test="phone != null and phone!='' " >
@@ -57,7 +57,7 @@
         </trim>
     </insert>
 
-    <delete id="delete" parameterType="com.hwy.blog.model.About">
+    <delete id="delete" parameterType="com.hwy.blog.core.model.About">
         delete from t_about
         <where>
                 <if test="id != null and id!='' " >
@@ -66,7 +66,7 @@
         </where>
     </delete>
 
-    <update id="update" parameterType="com.hwy.blog.model.About">
+    <update id="update" parameterType="com.hwy.blog.core.model.About">
         update t_about
         <set>
                     <if test="phone != null and phone!='' " >
@@ -92,7 +92,7 @@
         </where>
     </update>
 
-    <select id="select" parameterType="com.hwy.blog.model.About" resultMap="AboutResultMap">
+    <select id="select" parameterType="com.hwy.blog.core.model.About" resultMap="AboutResultMap">
         select <include refid="Base_Column_List"/>
         from t_about
         <where>
@@ -102,7 +102,7 @@
         </where>
     </select>
 
-    <select id="get" parameterType="com.hwy.blog.model.About" resultMap="AboutResultMap">
+    <select id="get" parameterType="com.hwy.blog.core.model.About" resultMap="AboutResultMap">
         select <include refid="Base_Column_List"/>
         from t_about
         <where>

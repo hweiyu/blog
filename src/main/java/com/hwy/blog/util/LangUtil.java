@@ -37,17 +37,21 @@ public class LangUtil {
 
     public static <F, T> List<T> transform(List<F> fromList, Function<? super F, ? extends T> function) {
         List<T> result = Lists.newArrayList();
-        for (F input : fromList) {
-            result.add(function.apply(input));
+        if (null != fromList) {
+            for (F input : fromList) {
+                result.add(function.apply(input));
+            }
         }
         return result;
     }
 
     public static <T> List<T> filter(List<T> fromList, Predicate<? super T> predicate) {
         List<T> result = Lists.newArrayList();
-        for (T input : fromList) {
-            if (predicate.test(input)) {
-                result.add(input);
+        if (null != fromList) {
+            for (T input : fromList) {
+                if (predicate.test(input)) {
+                    result.add(input);
+                }
             }
         }
         return result;

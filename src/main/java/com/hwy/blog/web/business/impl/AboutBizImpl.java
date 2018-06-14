@@ -1,6 +1,9 @@
 package com.hwy.blog.web.business.impl;
 
+import com.hwy.blog.core.service.AboutService;
 import com.hwy.blog.web.business.AboutBiz;
+import com.hwy.blog.web.dto.res.AboutRes;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,4 +15,12 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class AboutBizImpl implements AboutBiz {
+
+    @Autowired
+    private AboutService aboutService;
+
+    @Override
+    public AboutRes get() {
+        return AboutRes.get(aboutService.get().orElse(null));
+    }
 }

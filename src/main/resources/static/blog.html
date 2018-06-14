@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>关于我</title>
+    <title>博客</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -61,7 +61,7 @@
         <div class="widewrapper subheader">
             <div class="container">
                 <div class="clean-breadcrumb">
-                    <a href="#">关于我</a>
+                    <a href="#">博客</a>
                 </div>
 
                 <div class="clean-searchbox">
@@ -79,11 +79,10 @@
 
     <div class="widewrapper main">
         <div class="container about">
-            <h1>你好, 我的名字是 <span class="about-bold">  黄维瑜</span></h1>
-            <p>手机：<span id="phone"></span></p>
-            <p>QQ：<span id="qq"></span></p>
-            <p>邮箱：<span id="email"></span></p>
-            <p>简介：<span id="context"></span></p>
+            <p>主题1</p>
+            <p>内容1内容1内容1内容1内容1内容1内容1</p>
+            <p>主题2</p>
+            <p>内容2内容2内容2内容2内容2内容2内容2</p>
 
             <!--<div class="about-button">-->
                 <!--<a class="btn btn-xlarge btn-clean-one" href="contact.html">Contact Me</a>-->
@@ -140,21 +139,21 @@
 
         $(document).ready(function(){
             //Ajax调用处理
-            $.ajax({
-                type: "get",
-                dataType: "json",
-                url: "http://localhost:8080/about/get",
-                data: {},
-                success: function(res){
-                    $('#phone').text(res.data.phone);
-                    $('#qq').text(res.data.qq);
-                    $('#email').text(res.data.email);
-                    $('#context').text(res.data.context);
-                },
-                error: function (res) {
-
-                }
-            });
+            // $.ajax({
+            //     type: "get",
+            //     dataType: "json",
+            //     url: "http://localhost:8080/about/get",
+            //     data: {},
+            //     success: function(res){
+            //         $('#phone').text(res.data.phone);
+            //         $('#qq').text(res.data.qq);
+            //         $('#email').text(res.data.email);
+            //         $('#context').text(res.data.context);
+            //     },
+            //     error: function (res) {
+            //
+            //     }
+            // });
         });
 
     </script>

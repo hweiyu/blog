@@ -3,6 +3,7 @@ package com.hwy.blog.core.service;
 import com.hwy.blog.core.model.Blog;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author huangweiyu
@@ -13,5 +14,5 @@ import java.util.List;
  **/
 public interface BlogService {
 
-    List<Blog> list();
+    Optional<List<Blog>> list();
 }

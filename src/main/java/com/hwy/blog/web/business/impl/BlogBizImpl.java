@@ -1,5 +1,6 @@
 package com.hwy.blog.web.business.impl;
 
+import com.google.common.collect.Lists;
 import com.hwy.blog.web.business.BlogBiz;
 import com.hwy.blog.web.dto.res.BlogRes;
 import com.hwy.blog.core.model.Blog;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -26,8 +28,8 @@ public class BlogBizImpl implements BlogBiz {
 
     @Override
     public List<BlogRes> list() {
-        List<Blog> blogList = blogService.list();
-        return LangUtil.transform(blogList, new Function<Blog, BlogRes>() {
+        Optional<List<Blog>> blogList = blogService.list();
+        return LangUtil.transform(blogList.orElse(null), new Function<Blog, BlogRes>() {
             @Override
             public BlogRes apply(Blog blog) {
                 return BlogRes.get(blog);

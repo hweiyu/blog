@@ -10,6 +10,7 @@ CREATE TABLE `t_login` (
 
 CREATE TABLE `t_image` (
 	`id` BIGINT (20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`rel_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '关系id',
 	`path` VARCHAR (255) NOT NULL DEFAULT '' COMMENT '图片路径',
 	`img_type` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '图片类型',
 	`data_status` TINYINT (4) NOT NULL DEFAULT '1' COMMENT '状态(0:禁用,1:启用,2:删除)',

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.hwy.blog.dao.BlogDao">
+
+    <resultMap id="BlogResultMap" type="com.hwy.blog.model.Blog">
+            <id column="id" jdbcType="BIGINT" property="id" />
+            <id column="topic" jdbcType="VARCHAR" property="topic" />
+            <id column="context" jdbcType="VARCHAR" property="context" />
+            <id column="data_status" jdbcType="TINYINT" property="dataStatus" typeHandler="com.hwy.blog.typeHandler.DataStatusTypeHandler"/>
+            <id column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+            <id column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+            id,
+            topic,
+            context,
+            data_status,
+            create_time,
+            update_time
+    </sql>
+
+    <insert id="insert" parameterType="com.hwy.blog.model.Blog">
+        insert into t_blog
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+                <if test="topic != null and topic!='' " >
+                    topic,
+                </if>
+                <if test="context != null and context!='' " >
+                    context,
+                </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+                <if test="topic != null and topic!='' " >
+                    #{topic,jdbcType=VARCHAR},
+                </if>
+                <if test="context != null and context!='' " >
+                    #{context,jdbcType=VARCHAR},
+                </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" parameterType="com.hwy.blog.model.Blog">
+        delete from t_blog
+        <where>
+                <if test="id != null and id!='' " >
+                    id = #{id},
+                </if>
+        </where>
+    </delete>
+
+    <update id="update" parameterType="com.hwy.blog.model.Blog">
+        update t_blog
+        <set>
+                    <if test="topic != null and topic!='' " >
+                        topic=#{topic,jdbcType=VARCHAR},
+                    </if>
+                    <if test="context != null and context!='' " >
+                        context=#{context,jdbcType=VARCHAR},
+                    </if>
+                    <if test="dataStatus != null and dataStatus!='' " >
+                        data_status=#{dataStatus,jdbcType=TINYINT,typeHandler=com.hwy.blog.typeHandler.DataStatusTypeHandler},
+                    </if>
+        </set>
+        <where>
+                <if test="id != null and id!='' " >
+                    id = #{id},
+                </if>
+        </where>
+    </update>
+
+    <select id="select" parameterType="com.hwy.blog.model.Blog" resultMap="BlogResultMap">
+        select <include refid="Base_Column_List"/>
+        from t_blog
+        <where>
+                    <if test="id != null and id!='' " >
+                        id = #{id},
+                    </if>
+        </where>
+    </select>
+
+    <select id="get" parameterType="com.hwy.blog.model.Blog" resultMap="BlogResultMap">
+        select <include refid="Base_Column_List"/>
+        from t_blog
+        <where>
+                    <if test="id != null and id!='' " >
+                        id = #{id},
+                    </if>
+        </where>
+    </select>
+
+</mapper>

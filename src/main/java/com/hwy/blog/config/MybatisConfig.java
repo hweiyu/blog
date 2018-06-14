@@ -1,54 +1,45 @@
 package com.hwy.blog.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {MybatisConfig.MAPPER_PACKAGE}, sqlSessionFactoryRef = MybatisConfig.SESSIONFACTORY_NAME)
-public class MybatisConfig {
-
-    /**SqlSessionFactory名称.*/
-    public final static String SESSIONFACTORY_NAME = "sqlSessionFactory";
-    /**mapper包路径，必须与其他SqlSessionFactory-mapper路径区分.*/
-    public final static String MAPPER_PACKAGE = "com.hwy.blog.dao";
-    /**mapper.xml文件路径，必须与其他SqlSessionFactory-mapper路径区分.*/
-    public final static String MAPPER_XML_PATH = "classpath:mapper/*.xml";
+@EnableTransactionManagement
+@MapperScan(basePackages = {"com.hwy.blog.dao"}, sqlSessionFactoryRef = "sqlSessionFactory")
+public class MybatisConfig implements TransactionManagementConfigurer {
 
     @Autowired
-    private DataSourceProperties dataSourceProperties;
+    private DataSource dataSource;
 
-
-    @Bean(name = "dataSource")
-    public DataSource dataSource() {
-        //建议封装成单独的类
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl(dataSourceProperties.getUrl());
-        System.err.println(dataSourceProperties.getUrl());
-        dataSource.setDriverClassName(dataSourceProperties.getDriverClassName());
-        dataSource.setUsername(dataSourceProperties.getUsername());
-        dataSource.setPassword(dataSourceProperties.getPassword());
-
-        return dataSource;
-
-    }
-
-    //默认Bean首字母小写，简化配置
-    //将SqlSessionFactory作为Bean注入到Spring容器中，成为配置一部分。
-    @Bean
+    @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_XML_PATH));
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources("classpath:mapper/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+
+    @Bean
+    @Override
+    public PlatformTransactionManager annotationDrivenTransactionManager() {
+        return new DataSourceTransactionManager(dataSource);
+    }
 }

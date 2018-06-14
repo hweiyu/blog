@@ -44,6 +44,6 @@ public class DataStatusTypeHandler implements TypeHandler<DataStatus> {
 
     private DataStatus get(int status) {
         Optional<DataStatus> opt = DataStatus.of(status);
-        return null != opt && opt.isPresent() ? opt.get() : null;
+        return opt.orElse(null);
     }
 }

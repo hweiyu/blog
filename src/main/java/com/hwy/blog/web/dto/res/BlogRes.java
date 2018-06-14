@@ -29,6 +29,10 @@ public class BlogRes extends BaseRes {
      */
     private String context;
 
+    private String createTime;
+
+    private String updateTime;
+
     public static BlogRes get(Blog blog) {
         if (null == blog) {
             return null;
@@ -36,6 +40,8 @@ public class BlogRes extends BaseRes {
         return BlogRes.builder()
                 .topic(blog.getTopic())
                 .context(blog.getContext())
+                .createTime(blog.getCreateTime())
+                .updateTime(blog.getUpdateTime())
                 .build();
     }
 }

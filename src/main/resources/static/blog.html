@@ -78,11 +78,11 @@
     </header>
 
     <div class="widewrapper main">
-        <div class="container about">
-            <p>主题1</p>
-            <p>内容1内容1内容1内容1内容1内容1内容1</p>
-            <p>主题2</p>
-            <p>内容2内容2内容2内容2内容2内容2内容2</p>
+        <div class="container about" id="context">
+            <!--<p>主题1</p>-->
+            <!--<p>内容1内容1内容1内容1内容1内容1内容1</p>-->
+            <!--<p>主题2</p>-->
+            <!--<p>内容2内容2内容2内容2内容2内容2内容2</p>-->
 
             <!--<div class="about-button">-->
                 <!--<a class="btn btn-xlarge btn-clean-one" href="contact.html">Contact Me</a>-->
@@ -138,22 +138,30 @@
     <script type="text/javascript">
 
         $(document).ready(function(){
-            //Ajax调用处理
-            // $.ajax({
-            //     type: "get",
-            //     dataType: "json",
-            //     url: "http://localhost:8080/about/get",
-            //     data: {},
-            //     success: function(res){
-            //         $('#phone').text(res.data.phone);
-            //         $('#qq').text(res.data.qq);
-            //         $('#email').text(res.data.email);
-            //         $('#context').text(res.data.context);
-            //     },
-            //     error: function (res) {
-            //
-            //     }
-            // });
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                url: "http://localhost:8080/blog/list",
+                data: {},
+                success: function(res){
+                    var inHtml = "";
+                    for(var i = 0; i < res.data.length; i++) {
+                        inHtml += "<p><b>";
+                        inHtml += res.data[i].topic;
+                        inHtml += "</b></p>";
+                        inHtml += "<p>";
+                        inHtml += res.data[i].context;
+                        inHtml += "</p>";
+                        inHtml += "<p>";
+                        inHtml += res.data[i].createTime;
+                        inHtml += "</p><hr/>";
+                    }
+                    $('#context').html(inHtml);
+                },
+                error: function (res) {
+
+                }
+            });
         });
 
     </script>

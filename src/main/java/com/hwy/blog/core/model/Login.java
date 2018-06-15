@@ -1,5 +1,12 @@
 package com.hwy.blog.core.model;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+@Builder
+@Getter
+@Setter
 public class Login extends BaseModel {
 
     /**
@@ -12,19 +19,4 @@ public class Login extends BaseModel {
 	 */
 	private String password;
 
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 }

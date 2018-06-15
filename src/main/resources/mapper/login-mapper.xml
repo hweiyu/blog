@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <!-- namespace必须指向Dao接口 -->
+<!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.hwy.blog.core.dao.LoginDao">
 
     <resultMap id="LoginResultMap" type="com.hwy.blog.core.model.Login">
-            <id column="id" jdbcType="BIGINT" property="id" />
-            <id column="login_name" jdbcType="VARCHAR" property="loginName" />
-            <id column="password" jdbcType="VARCHAR" property="password" />
-            <id column="data_status" jdbcType="TINYINT" property="dataStatus" typeHandler="com.hwy.blog.typeHandler.DataStatusTypeHandler"/>
-            <id column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-            <id column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <id column="login_name" jdbcType="VARCHAR" property="loginName"/>
+        <id column="password" jdbcType="VARCHAR" property="password"/>
+        <id column="data_status" jdbcType="TINYINT" property="dataStatus"
+            typeHandler="com.hwy.blog.typeHandler.DataStatusTypeHandler"/>
+        <id column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <id column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -23,70 +24,75 @@
 
     <insert id="insert" parameterType="com.hwy.blog.core.model.Login">
         insert into t_login
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-                <if test="loginName != null and loginName!='' " >
-                    login_name,
-                </if>
-                <if test="password != null and password!='' " >
-                    password,
-                </if>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="loginName != null and loginName!='' ">
+                login_name,
+            </if>
+            <if test="password != null and password!='' ">
+                password,
+            </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-                <if test="loginName != null and loginName!='' " >
-                    #{loginName,jdbcType=VARCHAR},
-                </if>
-                <if test="password != null and password!='' " >
-                    #{password,jdbcType=VARCHAR},
-                </if>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="loginName != null and loginName!='' ">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password!='' ">
+                #{password,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
 
     <delete id="delete" parameterType="com.hwy.blog.core.model.Login">
         delete from t_login
         <where>
-                <if test="id != null and id!='' " >
-                    id = #{id},
-                </if>
+            <if test="id != null and id!='' ">
+                id = #{id},
+            </if>
         </where>
     </delete>
 
     <update id="update" parameterType="com.hwy.blog.core.model.Login">
         update t_login
         <set>
-                    <if test="loginName != null and loginName!='' " >
-                        login_name=#{loginName,jdbcType=VARCHAR},
-                    </if>
-                    <if test="password != null and password!='' " >
-                        password=#{password,jdbcType=VARCHAR},
-                    </if>
-                    <if test="dataStatus != null and dataStatus!='' " >
-                        data_status=#{dataStatus,jdbcType=TINYINT,typeHandler=com.hwy.blog.typeHandler.DataStatusTypeHandler},
-                    </if>
+            <if test="loginName != null and loginName!='' ">
+                login_name=#{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password!='' ">
+                password=#{password,jdbcType=VARCHAR},
+            </if>
+            <if test="dataStatus != null and dataStatus!='' ">
+                data_status=#{dataStatus,jdbcType=TINYINT,typeHandler=com.hwy.blog.typeHandler.DataStatusTypeHandler},
+            </if>
         </set>
         <where>
-                <if test="id != null and id!='' " >
-                    id = #{id},
-                </if>
+            <if test="id != null and id!='' ">
+                id = #{id},
+            </if>
         </where>
     </update>
 
     <select id="select" parameterType="com.hwy.blog.core.model.Login" resultMap="LoginResultMap">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from t_login
         <where>
-                    <if test="id != null and id!='' " >
-                        id = #{id},
-                    </if>
+            <if test="id != null and id!='' ">
+                id = #{id},
+            </if>
         </where>
     </select>
 
     <select id="get" parameterType="com.hwy.blog.core.model.Login" resultMap="LoginResultMap">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from t_login
         <where>
-                    <if test="id != null and id!='' " >
-                        id = #{id},
-                    </if>
+            <if test="id != null and id!='' ">
+                id = #{id},
+            </if>
+            <if test="loginName != null and loginName!='' ">
+                and login_name = #{loginName},
+            </if>
         </where>
     </select>
 

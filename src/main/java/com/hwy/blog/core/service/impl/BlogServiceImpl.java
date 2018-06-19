@@ -23,7 +23,27 @@ public class BlogServiceImpl implements BlogService {
     private BlogDao blogDao;
 
     @Override
-    public Optional<List<Blog>> list() {
-        return Optional.ofNullable(blogDao.select(null));
+    public int insert(Blog model) {
+        return 0;
+    }
+
+    @Override
+    public int delete(Blog model) {
+        return 0;
+    }
+
+    @Override
+    public int update(Blog model) {
+        return 0;
+    }
+
+    @Override
+    public Optional<List<Blog>> select(Blog model) {
+        return Optional.ofNullable(blogDao.select(model));
+    }
+
+    @Override
+    public Optional<Blog> get(Blog model) {
+        return Optional.empty();
     }
 }

@@ -28,7 +28,7 @@ public class BlogBizImpl implements BlogBiz {
 
     @Override
     public List<BlogRes> list() {
-        Optional<List<Blog>> blogList = blogService.list();
+        Optional<List<Blog>> blogList = blogService.select(new Blog());
         return LangUtil.transform(blogList.orElse(null), new Function<Blog, BlogRes>() {
             @Override
             public BlogRes apply(Blog blog) {

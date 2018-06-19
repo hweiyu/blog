@@ -6,6 +6,7 @@ import com.hwy.blog.core.service.AboutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,7 +23,27 @@ public class AboutServiceImpl implements AboutService {
     private AboutDao aboutDao;
 
     @Override
-    public Optional<About> get() {
-        return Optional.ofNullable(aboutDao.get(null));
+    public int insert(About model) {
+        return 0;
+    }
+
+    @Override
+    public int delete(About model) {
+        return 0;
+    }
+
+    @Override
+    public int update(About model) {
+        return 0;
+    }
+
+    @Override
+    public Optional<List<About>> select(About model) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<About> get(About about) {
+        return Optional.ofNullable(aboutDao.get(about));
     }
 }

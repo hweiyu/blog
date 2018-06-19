@@ -1,8 +1,7 @@
 package com.hwy.blog.core.service;
 
+import com.hwy.blog.core.base.BaseService;
 import com.hwy.blog.core.model.About;
-
-import java.util.Optional;
 
 /**
  * @author huangweiyu
@@ -11,7 +10,6 @@ import java.util.Optional;
  * @Description: 描述
  * @date 2018/6/14 13:58
  **/
-public interface AboutService {
+public interface AboutService extends BaseService<About> {
 
-    Optional<About> get();
 }

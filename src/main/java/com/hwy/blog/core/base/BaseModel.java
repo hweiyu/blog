@@ -1,4 +1,4 @@
-package com.hwy.blog.core.model;
+package com.hwy.blog.core.base;
 
 import com.hwy.blog.enums.DataStatus;
 

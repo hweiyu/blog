@@ -22,6 +22,7 @@ public class AboutBizImpl implements AboutBiz {
 
     @Override
     public AboutRes get() {
-        return AboutRes.get(aboutService.get().orElse(new About()));
+        About empty = new About();
+        return AboutRes.get(aboutService.get(empty).orElse(empty));
     }
 }

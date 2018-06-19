@@ -1,5 +1,7 @@
 package com.hwy.blog.core.model;
 
+import com.hwy.blog.core.base.BaseModel;
+
 public class Blog extends BaseModel {
 
     /**

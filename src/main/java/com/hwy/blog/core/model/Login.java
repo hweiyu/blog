@@ -1,5 +1,6 @@
 package com.hwy.blog.core.model;
 
+import com.hwy.blog.core.base.BaseModel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,5 +1,6 @@
 package com.hwy.blog.web.business.impl;
 
+import com.hwy.blog.core.model.About;
 import com.hwy.blog.core.service.AboutService;
 import com.hwy.blog.web.business.AboutBiz;
 import com.hwy.blog.web.dto.res.AboutRes;
@@ -21,6 +22,6 @@ public class AboutBizImpl implements AboutBiz {
 
     @Override
     public AboutRes get() {
-        return AboutRes.get(aboutService.get().orElse(null));
+        return AboutRes.get(aboutService.get().orElse(new About()));
     }
 }

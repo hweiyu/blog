@@ -4,7 +4,10 @@ import com.hwy.blog.web.business.BlogBiz;
 import com.hwy.blog.web.dto.BlogResult;
 import com.hwy.blog.web.dto.res.BlogRes;
 import com.hwy.blog.util.ResultUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,12 +21,15 @@ import java.util.List;
  * @date 2018/6/14 14:04
  **/
 @RestController
+@RequestMapping("${api.url.prefix}")
+@Api(description = "博客接口")
 public class BlogController {
 
     @Autowired
     private BlogBiz blogBiz;
 
-    @RequestMapping(value = "blog/list")
+    @PostMapping(value = "blog/list")
+    @ApiOperation(value = "获取博客列表", notes = "获取博客列表")
     public BlogResult<List<BlogRes>> list() {
         return ResultUtil.success(blogBiz.list());
     }

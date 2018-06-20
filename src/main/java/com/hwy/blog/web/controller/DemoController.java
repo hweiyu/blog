@@ -4,7 +4,9 @@ import com.hwy.blog.web.business.DemoBiz;
 import com.hwy.blog.web.dto.BlogResult;
 import com.hwy.blog.web.dto.res.DemoRes;
 import com.hwy.blog.util.ResultUtil;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,12 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2018/6/14 9:15
  **/
 @RestController
+@RequestMapping("${api.url.prefix}")
+@Api(description = "样例接口")
 public class DemoController {
 
     @Autowired
     private DemoBiz demoBiz;
 
-    @RequestMapping(value = "demo")
+    @PostMapping(value = "demo")
     public BlogResult<DemoRes> demo() {
         return ResultUtil.success(new DemoRes("this is demo api"));
     }

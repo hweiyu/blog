@@ -3,6 +3,7 @@ package com.hwy.blog.core.service.impl;
 import com.hwy.blog.core.dao.AboutDao;
 import com.hwy.blog.core.model.About;
 import com.hwy.blog.core.service.AboutService;
+import com.hwy.blog.page.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class AboutServiceImpl implements AboutService {
     }
 
     @Override
-    public Optional<List<About>> select(About model) {
+    public Optional<List<About>> select(About model, Page page) {
         return Optional.empty();
     }
 

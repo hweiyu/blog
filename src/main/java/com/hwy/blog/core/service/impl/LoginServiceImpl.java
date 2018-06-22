@@ -3,6 +3,7 @@ package com.hwy.blog.core.service.impl;
 import com.hwy.blog.core.dao.LoginDao;
 import com.hwy.blog.core.model.Login;
 import com.hwy.blog.core.service.LoginService;
+import com.hwy.blog.page.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Optional<List<Login>> select(Login model) {
+    public Optional<List<Login>> select(Login model, Page page) {
         return Optional.empty();
     }
 

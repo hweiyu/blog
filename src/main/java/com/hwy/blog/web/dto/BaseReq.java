@@ -1,6 +1,4 @@
-package com.hwy.blog.web.dto.req;
-
-import com.hwy.blog.web.dto.Dto;
+package com.hwy.blog.web.dto;
 
 /**
  * @author huangweiyu

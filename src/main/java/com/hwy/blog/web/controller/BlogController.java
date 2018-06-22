@@ -4,14 +4,15 @@ import com.hwy.blog.web.business.BlogBiz;
 import com.hwy.blog.web.dto.BlogResult;
 import com.hwy.blog.web.dto.res.BlogRes;
 import com.hwy.blog.util.ResultUtil;
+import com.hwy.blog.web.dto.req.BlogReq;
+import com.hwy.blog.web.dto.res.PageRes;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @author huangweiyu
@@ -23,14 +24,14 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.url.prefix}")
 @Api(description = "博客接口")
-public class BlogController {
+public class BlogController extends BaseController {
 
     @Autowired
     private BlogBiz blogBiz;
 
     @PostMapping(value = "blog/list")
     @ApiOperation(value = "获取博客列表", notes = "获取博客列表")
-    public BlogResult<List<BlogRes>> list() {
-        return ResultUtil.success(blogBiz.list());
+    public BlogResult<PageRes<BlogRes>> list(@RequestBody BlogReq blogReq) {
+        return ResultUtil.success(blogBiz.list(blogReq));
     }
 }

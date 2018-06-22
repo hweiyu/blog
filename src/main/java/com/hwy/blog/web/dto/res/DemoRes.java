@@ -1,5 +1,7 @@
 package com.hwy.blog.web.dto.res;
 
+import com.hwy.blog.web.dto.BaseRes;
+
 /**
  * @author huangweiyu
  * @version V1.0

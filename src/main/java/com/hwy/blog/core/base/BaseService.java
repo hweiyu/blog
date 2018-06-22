@@ -1,5 +1,7 @@
 package com.hwy.blog.core.base;
 
+import com.hwy.blog.page.Page;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +20,7 @@ public interface BaseService<T> {
 
     int update(T model);
 
-    Optional<List<T>> select(T model);
+    Optional<List<T>> select(T model, Page page);
 
     Optional<T> get(T model);
 }

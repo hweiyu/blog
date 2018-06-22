@@ -17,10 +17,6 @@ public class ResultUtil {
 
     private static final String DEFAULT_CODE = "1";
 
-    public static <T> BlogResult<T> create(boolean res, String message, T data) {
-        return res ? success(data) : error(message, data);
-    }
-
     public static<T> BlogResult<T> success(T data) {
         BlogResult<T> result = new BlogResult<>();
         result.setResult(TRUE);
@@ -40,5 +36,9 @@ public class ResultUtil {
         result.setData(data);
         result.setCode(DEFAULT_CODE);
         return result;
+    }
+
+    public static <T> BlogResult<T> create(boolean res, String message, T data) {
+        return res ? success(data) : error(message, data);
     }
 }

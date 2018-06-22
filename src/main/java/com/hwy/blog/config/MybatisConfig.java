@@ -1,5 +1,7 @@
 package com.hwy.blog.config;
 
+import com.hwy.blog.page.PagingInterceptor;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -23,12 +25,17 @@ public class MybatisConfig implements TransactionManagementConfigurer {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private PagingInterceptor pagingInterceptor;
+
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
                 .getResources("classpath:mapper/*.xml"));
+        //分页拦截
+        sqlSessionFactoryBean.setPlugins(new Interceptor[] {pagingInterceptor});
         return sqlSessionFactoryBean.getObject();
     }
 

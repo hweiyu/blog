@@ -1,8 +1,8 @@
 package com.hwy.blog.web.business;
 
 import com.hwy.blog.web.dto.res.BlogRes;
-
-import java.util.List;
+import com.hwy.blog.web.dto.req.BlogReq;
+import com.hwy.blog.web.dto.res.PageRes;
 
 /**
  * @author huangweiyu
@@ -13,5 +13,5 @@ import java.util.List;
  **/
 public interface BlogBiz {
 
-    List<BlogRes> list();
+    PageRes<BlogRes> list(BlogReq blogReq);
 }

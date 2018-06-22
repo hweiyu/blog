@@ -3,6 +3,7 @@ package com.hwy.blog.core.service.impl;
 import com.hwy.blog.core.dao.BlogDao;
 import com.hwy.blog.core.model.Blog;
 import com.hwy.blog.core.service.BlogService;
+import com.hwy.blog.page.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +39,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Optional<List<Blog>> select(Blog model) {
-        return Optional.ofNullable(blogDao.select(model));
+    public Optional<List<Blog>> select(Blog model, Page page) {
+        return Optional.ofNullable(blogDao.select(model, page));
     }
 
     @Override

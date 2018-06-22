@@ -1,5 +1,7 @@
 package com.hwy.blog.core.base;
 
+import com.hwy.blog.page.Page;
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public interface BaseDao<T> {
 
     int update(T model);
 
-    List<T> select(T model);
+    List<T> select(T model, Page page);
 
     T get(T model);
 }

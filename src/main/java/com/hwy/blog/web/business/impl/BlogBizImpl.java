@@ -1,11 +1,12 @@
 package com.hwy.blog.web.business.impl;
 
-import com.google.common.collect.Lists;
 import com.hwy.blog.web.business.BlogBiz;
 import com.hwy.blog.web.dto.res.BlogRes;
 import com.hwy.blog.core.model.Blog;
 import com.hwy.blog.core.service.BlogService;
 import com.hwy.blog.util.LangUtil;
+import com.hwy.blog.web.dto.req.BlogReq;
+import com.hwy.blog.web.dto.res.PageRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +28,14 @@ public class BlogBizImpl implements BlogBiz {
     private BlogService blogService;
 
     @Override
-    public List<BlogRes> list() {
-        Optional<List<Blog>> blogList = blogService.select(new Blog());
-        return LangUtil.transform(blogList.orElse(null), new Function<Blog, BlogRes>() {
+    public PageRes<BlogRes> list(BlogReq blogReq) {
+        Optional<List<Blog>> blogList = blogService.select(new Blog(), blogReq.getPage());
+        List<BlogRes> data = LangUtil.transform(blogList.orElse(null), new Function<Blog, BlogRes>() {
             @Override
             public BlogRes apply(Blog blog) {
                 return BlogRes.get(blog);
             }
         });
+        return PageRes.create(data, blogReq.getPage());
     }
 }

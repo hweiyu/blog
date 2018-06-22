@@ -1,6 +1,7 @@
 package com.hwy.blog.web.dto.res;
 
 import com.hwy.blog.core.model.About;
+import com.hwy.blog.web.dto.BaseRes;
 import lombok.*;
 
 /**

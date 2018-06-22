@@ -1,5 +1,6 @@
 package com.hwy.blog.web.dto.req;
 
+import com.hwy.blog.web.dto.BaseReq;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

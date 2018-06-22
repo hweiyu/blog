@@ -3,6 +3,7 @@ package com.hwy.blog.core.service.impl;
 import com.hwy.blog.core.dao.ImageDao;
 import com.hwy.blog.core.model.Image;
 import com.hwy.blog.core.service.ImageService;
+import com.hwy.blog.page.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public Optional<List<Image>> select(Image model) {
+    public Optional<List<Image>> select(Image model, Page page) {
         return Optional.empty();
     }
 

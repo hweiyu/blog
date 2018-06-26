@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("${api.url.prefix}")
 @Api(description = "图片接口")
-public class ImageController {
+public class ImageController extends BaseController {
 }

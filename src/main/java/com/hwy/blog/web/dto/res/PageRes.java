@@ -1,6 +1,8 @@
 package com.hwy.blog.web.dto.res;
 
+import com.google.common.collect.Lists;
 import com.hwy.blog.page.Page;
+import com.hwy.blog.util.ListUtil;
 import com.hwy.blog.web.dto.PageDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,11 +24,17 @@ public class PageRes<T> extends PageDto {
 
     private List<T> list;
 
-    public PageRes() {}
+    public PageRes() {
+
+    }
+
+    public static <T> PageRes<T> create(Page page) {
+        return create(Lists.newArrayList(), page);
+    }
 
     public static <T> PageRes<T> create(List<T> list, Page page) {
         PageRes<T> result = new PageRes<>();
-        result.setList(list);
+        result.setList(ListUtil.nullToEmptyList(list));
         result.setPage(page);
         return result;
     }

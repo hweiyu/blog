@@ -1,7 +1,6 @@
 package com.hwy.blog.web.controller;
 
 import com.hwy.blog.exception.BlogException;
-import com.hwy.blog.util.ResultUtil;
 import com.hwy.blog.web.business.LoginBiz;
 import com.hwy.blog.web.dto.BlogResult;
 import com.hwy.blog.web.dto.req.LoginReq;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("${api.url.prefix}")
 @Api(description = "登录接口")
-public class LoginController {
+public class LoginController extends BaseController {
 
     @Autowired
     private LoginBiz loginBiz;
@@ -38,6 +37,6 @@ public class LoginController {
         } catch (BlogException e) {
             errMsg = e.getMessage();
         }
-        return ResultUtil.create(res, errMsg, null);
+        return create(res, errMsg, null);
     }
 }

@@ -3,7 +3,6 @@ package com.hwy.blog.web.controller;
 import com.hwy.blog.web.business.BlogBiz;
 import com.hwy.blog.web.dto.BlogResult;
 import com.hwy.blog.web.dto.res.BlogRes;
-import com.hwy.blog.util.ResultUtil;
 import com.hwy.blog.web.dto.req.BlogReq;
 import com.hwy.blog.web.dto.res.PageRes;
 import io.swagger.annotations.Api;
@@ -32,6 +31,6 @@ public class BlogController extends BaseController {
     @PostMapping(value = "blog/list")
     @ApiOperation(value = "获取博客列表", notes = "获取博客列表")
     public BlogResult<PageRes<BlogRes>> list(@RequestBody BlogReq blogReq) {
-        return ResultUtil.success(blogBiz.list(blogReq));
+        return success(blogBiz.list(blogReq));
     }
 }

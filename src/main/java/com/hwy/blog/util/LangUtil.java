@@ -65,10 +65,4 @@ public class LangUtil {
         return result;
     }
 
-    public static <T> T getFisrt(List<T> list) {
-        if (null != list && !list.isEmpty()) {
-            return list.get(0);
-        }
-        return null;
-    }
 }

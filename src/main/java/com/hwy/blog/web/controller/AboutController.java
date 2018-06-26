@@ -1,6 +1,5 @@
 package com.hwy.blog.web.controller;
 
-import com.hwy.blog.util.ResultUtil;
 import com.hwy.blog.web.business.AboutBiz;
 import com.hwy.blog.web.dto.BlogResult;
 import com.hwy.blog.web.dto.res.AboutRes;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("${api.url.prefix}")
 @Api(description = "关于我接口")
-public class AboutController {
+public class AboutController extends BaseController {
 
     @Autowired
     private AboutBiz aboutBiz;
@@ -29,6 +28,6 @@ public class AboutController {
     @PostMapping(value = "about/get")
     @ApiOperation(value = "获取关于我的数据", notes = "获取关于我的数据")
     public BlogResult<AboutRes> get() {
-        return ResultUtil.success(aboutBiz.get());
+        return success(aboutBiz.get());
     }
 }

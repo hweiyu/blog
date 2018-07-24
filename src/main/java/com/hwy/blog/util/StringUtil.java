@@ -17,16 +17,10 @@ public class StringUtil {
         if (null == arr || arr.length == 0) {
             return null;
         }
-        boolean isFirst = true;
         StringBuilder buf = new StringBuilder(256);
         for (String str : arr) {
-            if (isFirst) {
-                buf.append(str);
-                isFirst = false;
-            } else {
-                buf.append(",").append(str);
-            }
+            buf.append(",").append(str);
         }
-        return buf.toString();
+        return buf.substring(1);
     }
 }
